@@ -11,18 +11,23 @@
 ```bash
 git clone https://github.com/your-username/hh-parser.git
 cd hh-parser
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 ## Настройка файла .env
+```
 DB_NAME=hh_vacancies
 DB_USER=postgres
 DB_PASSWORD=your_password
 DB_HOST=localhost
 DB_PORT=5432
 BASE_URL=https://api.hh.ru/vacancies
+```
 
 ## Использование
+```
 python main.py
+```
 
 ## Функциональность
 1. **Показать компании и количество вакансий** — выводит список всех компаний и количество вакансий для каждой.
