@@ -1,5 +1,7 @@
 import psycopg2
-from config import DB_NAME, DB_USER, DB_PASSWORD, DB_HOST
+
+from config import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER
+
 
 def create_database() -> None:
     """Создаёт новую базу данных PostgreSQL."""
@@ -11,20 +13,24 @@ def create_database() -> None:
     cur.close()
     conn.close()
 
+
 def create_tables() -> None:
     """Создаёт таблицы employers и vacancies в базе данных."""
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
     cur = conn.cursor()
 
-    cur.execute("""
+    cur.execute(
+        """
         CREATE TABLE employers (
             id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             url TEXT
         )
-    """)
+    """
+    )
 
-    cur.execute("""
+    cur.execute(
+        """
         CREATE TABLE vacancies (
             id SERIAL PRIMARY KEY,
             employer_id INTEGER REFERENCES employers(id),
@@ -33,7 +39,8 @@ def create_tables() -> None:
             salary_to INTEGER,
             url TEXT
         )
-    """)
+    """
+    )
 
     conn.commit()
     cur.close()

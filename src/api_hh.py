@@ -1,7 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
+
 import requests
+
 from config import BASE_URL
+
 
 class JobAPI(ABC):
     """Абстрактный класс для работы с API вакансий."""
@@ -14,10 +17,11 @@ class JobAPI(ABC):
     def _connect_to_api(self, params: dict) -> Optional[dict]:
         pass
 
+
 class HeadHunterAPI(JobAPI):
     """Класс для работы с API hh.ru."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.url = BASE_URL
         if not self.url:
             raise ValueError("BASE_URL is not set in environment variables.")
